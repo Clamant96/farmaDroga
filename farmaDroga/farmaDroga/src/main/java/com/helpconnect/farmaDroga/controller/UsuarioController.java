@@ -41,10 +41,23 @@ public class UsuarioController {
 	}
 	
 	/*FUNCIONA COMO O LIKE DO MYSQL, VC INDICA LETRAS E ELE TE TRAZ TUDO QUE ELE ENCONTRAR COM ESSA REFERENCIA*/
-	@GetMapping("nome/{nome}")
+	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Usuario>> findByNomeUsuario(@PathVariable String nome){
 		
 		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
+	}
+	
+	/*PESQUISA TODOS OS PRODUTOS DE UM UNICO USUARIO*/
+	@GetMapping("/id/{id}")
+	public ResponseEntity<List<Usuario>> findAllById(@PathVariable long id){
+		
+		return ResponseEntity.ok(repository.findAllById(id));
+	}
+	
+	/*RETORNA TODOS OS USUARIOS ATIVOS NA BASE DE DADOS*/
+	@GetMapping("/ativa/{ativa}")
+	public ResponseEntity<List<Usuario>> GetAllByAtiva(@PathVariable boolean ativa){
+		return ResponseEntity.ok(repository.findAllByAtiva(ativa));
 	}
 	
 	/*INSERE UM NOVO DADO DENTRO DA TABELA USUARIO*/

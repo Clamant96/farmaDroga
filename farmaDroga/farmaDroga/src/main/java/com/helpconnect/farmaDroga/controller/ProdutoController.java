@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.helpconnect.farmaDroga.model.Produto;
 import com.helpconnect.farmaDroga.repository.ProdutoRepository;
+import com.helpconnect.farmaDroga.service.ProdutoService;
 
 @RestController
 @RequestMapping("/produtos")
@@ -25,6 +26,9 @@ public class ProdutoController {
 	
 	@Autowired
 	private ProdutoRepository repository;
+	
+	@Autowired
+	private ProdutoService service;
 	
 	@GetMapping
 	public ResponseEntity<List<Produto>> findAllProduto(){
@@ -56,6 +60,20 @@ public class ProdutoController {
 	public ResponseEntity<Produto> postProduto(@RequestBody Produto produto){
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(produto));
+	}
+	
+	/*
+	 * EXPLICACAO URI:
+	 * 
+	 * 	/plataformaJogo -> nome da tabela associativa
+	 * 	/usuarios -> nome da lista de usuarios dentro da classe Produto
+	 * 	/produtos -> nome da lista de produtos dentro da classe Usuario
+	 * 
+	 * */
+	@PutMapping("/produtoUsuario/usuarios/{idProduto}/produtos/{idUsuario}")
+	public ResponseEntity<Produto> postProdutoUsuario(@PathVariable long idProduto, @PathVariable long idUsuario){
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.cadastroUsuarioProduto(idProduto, idUsuario));
 	}
 	
 	@PutMapping
