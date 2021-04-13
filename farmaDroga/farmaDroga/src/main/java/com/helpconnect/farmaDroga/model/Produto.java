@@ -18,7 +18,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.URL;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -65,7 +64,7 @@ public class Produto {
 			@JoinColumn(name = "usuario_id")
 		}
 	)
-	@JsonIgnoreProperties({"nome", "cpf", "ativa", "produtos"})
+	@JsonIgnoreProperties({"nome", "cpf", "senha", "ativa", "produtos"})
     private List<Usuario> usuarios = new ArrayList<>();
 	
 	public long getId() {

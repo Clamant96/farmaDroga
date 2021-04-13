@@ -1,6 +1,7 @@
 package com.helpconnect.farmaDroga.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,5 +21,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>{ //Long 
 	//@Query(value = "SELECT * FROM farma_droga.usuario INNER JOIN farma_droga.produto_usuario ON farma_droga.usuario.id = farma_droga.produto_usuario.usuario_id WHERE farma_droga.usuario.id = :id", nativeQuery = true)
 	@Query(value = "SELECT * FROM farma_droga.produto_usuario AS compras INNER JOIN farma_droga.usuario AS usuario ON compras.usuario_id = usuario.id WHERE compras.usuario_id = :id", nativeQuery = true)
 	public List<Usuario> findAllById(@Param("id") long id);
+	
+	/* PESQUISE PELO NOME DE USUARIO */
+	public Optional<Usuario> findByCpf(String cpf);
 	
 }

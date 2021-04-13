@@ -33,6 +33,9 @@ public class Usuario {
 	private String cpf;
 	
 	@NotNull
+	private String senha;
+	
+	@NotNull
 	private boolean ativa;
 	
 	@ManyToMany(mappedBy = "usuarios", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -77,6 +80,14 @@ public class Usuario {
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 }
